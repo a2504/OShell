@@ -1,19 +1,25 @@
 %option noyywrap
 
 %{
-
+#include "parser.tab.h"
 %}
 
 %%
 
-[^ \t\n]*           { printf("IDENTIFIER\n"); }
-[ \t\n]             {  }                            /*ignoring whitespace*/
+[^ \t\n]+           { return IDENTIFIER; }
+\n					{ return EOL; }
+[ \t]            	{  }
 
 %%
-
+/*
 int main(int argc, char **argv)
 {
-    yylex();
+	int toknr;
+
+	while(toknr = yylex()){
+		printf("%d\n", toknr);
+	}
 
     return 0;
 }
+*/
