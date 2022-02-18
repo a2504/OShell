@@ -14,8 +14,10 @@ int yyerror(char* s);
 %%
 
 commands:
-| commands EXIT				{ exit(EXIT_SUCCESS); }
-| commands IDENTIFIER EOL 	{ printf("ID\\n \n"); }
+| commands command			{ ; }
+
+command: EXIT				{ exit(EXIT_SUCCESS); }
+| IDENTIFIER EOL 			{ printf("ID\\n \n"); }
 ;
 
 %%
