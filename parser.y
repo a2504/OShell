@@ -15,9 +15,17 @@ int yyerror(char* s);
 
 commands:
 | commands command			{ ; }
+;
 
-command: EXIT				{ exit(EXIT_SUCCESS); }
-| IDENTIFIER EOL 			{ printf("ID\\n \n"); }
+command: executable options {; }
+;
+
+executable: IDENTIFIER		{ printf("ID\n"); }
+| EXIT						{ printf("EX\n"); exit(EXIT_SUCCESS); }
+;
+
+options: EOL
+| IDENTIFIER options		{ printf("OP\n"); }
 ;
 
 %%
