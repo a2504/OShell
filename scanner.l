@@ -7,7 +7,7 @@
 %%
 
 "exit"				{ return EXIT; }
-[^ \t\n]+           { return IDENTIFIER; }
+[^ \t\n]+           { yylval.id = yytext; return IDENTIFIER; }
 \n					{ return EOL; }
 [ \t]            	{  }
 

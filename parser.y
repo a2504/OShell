@@ -7,7 +7,8 @@ int yylex(void);
 int yyerror(char* s);
 %}
 
-%token IDENTIFIER
+%union {int num; char *id; }
+%token <id> IDENTIFIER
 %token EOL
 %token EXIT
 
@@ -17,16 +18,18 @@ commands:
 | commands command			{ ; }
 ;
 
-command: executable options {; }
+command: executable options { ; }
 ;
 
-executable: IDENTIFIER		{ printf("ID\n"); }
+executable: IDENTIFIER		{ printf("ID %s\n", $1); }
 | EXIT						{ printf("EX\n"); exit(EXIT_SUCCESS); }
 ;
 
 options: EOL
-| IDENTIFIER options		{ printf("OP\n"); }
+| option options			{ ; }
 ;
+
+option: IDENTIFIER			{ printf("OP %s\n", $1); }
 
 %%
 
