@@ -6,7 +6,8 @@
 
 %%
 
-.*                  { printf("Error: invalid syntax!"); }
+[^ \t\n]*           { printf("IDENTIFIER\n"); }
+[ \t\n]             {  }                            /*ignoring whitespace*/
 
 %%
 
