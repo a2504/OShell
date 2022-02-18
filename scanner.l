@@ -6,12 +6,13 @@
 
 %%
 
+"exit"				{ return EXIT; }
 [^ \t\n]+           { return IDENTIFIER; }
 \n					{ return EOL; }
 [ \t]            	{  }
 
 %%
-/*
+/* code for testing
 int main(int argc, char **argv)
 {
 	int toknr;

@@ -1,6 +1,7 @@
 
 %{
 #include <stdio.h>
+#include <stdlib.h>
 
 int yylex(void);
 int yyerror(char* s);
@@ -8,11 +9,13 @@ int yyerror(char* s);
 
 %token IDENTIFIER
 %token EOL
+%token EXIT
 
 %%
 
 commands:
-| commands IDENTIFIER EOL { printf("ID\\n \n"); }
+| commands EXIT				{ exit(EXIT_SUCCESS); }
+| commands IDENTIFIER EOL 	{ printf("ID\\n \n"); }
 ;
 
 %%
