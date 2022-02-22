@@ -6,8 +6,14 @@
 
 %%
 
+"||"                { return OR; }
+"&&"                { return AND; }
+"|"                 { return PIPELINE; }
+"&"                 { return SINGLEAND; }
+";"                 { yylval.end = return (*yytext); }
+
 "exit"				{ return EXIT; }
-[^ \t\n]+           { yylval.id = yytext; return IDENTIFIER; }
+[^ \t\n|&;<>]+           { yylval.id = yytext; return IDENTIFIER; }
 \n					{ return EOL; }
 [ \t]            	{  }
 
